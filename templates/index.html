@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Django项目构建---首页</title>
+</head>
+
+<head>
+    <style>
+    #header {
+        background-color:black;
+        color:white;
+        text-align:center;
+        padding:5px;
+    }
+    #nav {
+        line-height:30px;
+        background-color:#eeeeee;
+        height:700px;
+        width:100px;
+        float:left;
+        padding:5px;
+    }
+    #section {
+        width:350px;
+        float:left;
+        padding:10px;
+    }
+    #footer {
+        background-color:black;
+        color:white;
+        clear:both;
+        text-align:center;
+       padding:5px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Django项目模板--首页</h1>
+    </div>
+
+    <div id="nav">
+        模板说明<br>
+    </div>
+
+    <div id="section">
+        <!--响应式布局设计-->
+        <head>
+            <style>.city {
+                float: left;
+                margin: 5px;
+                padding: 15px;
+                width: 300px;
+                height: 300px;
+                border: 1px solid black;
+        }
+            </style>
+        </head>
+
+        <div class="city">
+            <h2>简介</h2>
+            <p>{{content}}</p>
+        </div>
+        <div class="city">
+            <h2>DTL--部门</h2>
+            {% for k,v in department.items %}
+            <li>{{forloop.revcounter}}: {{k}}-{{v}}</li>>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="footer">
+        Django后台博客开发@2018
+    </div>
+
+</body>
+
+</html>
