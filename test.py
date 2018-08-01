@@ -64,19 +64,23 @@
 
 
 # jwt过期
-import jwt
-import threading
+# import jwt
+# import threading
+# import datetime
+#
+# event = threading.Event()
+# key = "wangjie"
+#
+# date = jwt.encode({"name": "tom", "age": 20, "exp": int(datetime.datetime.now().timestamp()) + 5}, key)  # token中增加过期时间
+# print(jwt.get_unverified_header(date))
+# try:
+#     while not event.wait(1):
+#         print(jwt.decode(date, key))  # 检验过期，过期抛出异常
+#         print(datetime.datetime.now().timestamp())
+# except jwt.ExpiredSignatureError as e:
+#     print(e)
+
 import datetime
 
-event = threading.Event()
-key = "wangjie"
-
-date = jwt.encode({"name": "tom", "age": 20, "exp": int(datetime.datetime.now().timestamp()) + 5}, key)  # token中增加过期时间
-print(jwt.get_unverified_header(date))
-try:
-    while not event.wait(1):
-        print(jwt.decode(date, key))  # 检验过期，过期抛出异常
-        print(datetime.datetime.now().timestamp())
-except jwt.ExpiredSignatureError as e:
-    print(e)
+print(datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))))
 
