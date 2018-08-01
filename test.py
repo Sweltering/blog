@@ -1,10 +1,10 @@
 # # jwt原理
-import jwt
-
-key = "secret"
-token = jwt.encode({"payload": "abc123"}, key, "HS256").decode()
-print(token)
-print(jwt.decode(token, key, algorithms=["HS256"]))
+# import jwt
+#
+# key = "secret"
+# token = jwt.encode({"payload": "abc123"}, key, "HS256").decode()
+# print(token)
+# print(jwt.decode(token, key, algorithms=["HS256"]))
 
 # header, payload, signature = token.split(b".")
 # print(header)
@@ -61,3 +61,22 @@ print(jwt.decode(token, key, algorithms=["HS256"]))
 # # 校验密码
 # print(bcrypt.checkpw(password, x), len(x))
 # print(bcrypt.checkpw(password + b" ", x), len(x))
+
+
+# jwt过期
+import jwt
+import threading
+import datetime
+
+event = threading.Event()
+key = "wangjie"
+
+date = jwt.encode({"name": "tom", "age": 20, "exp": int(datetime.datetime.now().timestamp()) + 5}, key)  # token中增加过期时间
+print(jwt.get_unverified_header(date))
+try:
+    while not event.wait(1):
+        print(jwt.decode(date, key))  # 检验过期，过期抛出异常
+        print(datetime.datetime.now().timestamp())
+except jwt.ExpiredSignatureError as e:
+    print(e)
+
